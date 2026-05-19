@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Franciele Silva | Psicóloga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green-dark: #3a5a40;
+      --green-mid: #588157;
+      --green-light: #a3b18a;
+      --beige: #dad7cd;
+      --beige-light: #f5f0e8;
+      --brown: #7c6a52;
+      --white: #ffffff;
+      --text-dark: #2d2d2d;
+      --text-mid: #555;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; color: var(--text-dark); background: var(--white); }
+
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+      padding: 16px 40px; display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--green-dark); font-weight: 700; }
+    .nav-logo span { color: var(--green-mid); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-mid); font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green-dark); }
+    .nav-cta {
+      background: var(--green-mid); color: white; border: none;
+      padding: 10px 22px; border-radius: 50px; cursor: pointer;
+      font-size: 0.9rem; font-family: 'Lato', sans-serif; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--green-dark); }
+
+    .hero {
+      min-height: 100vh; background: var(--beige-light);
+      display: flex; align-items: center; padding: 100px 40px 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(163,177,138,0.3) 0%, transparent 70%);
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -80px; left: -80px;
+      width: 350px; height: 350px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(88,129,87,0.15) 0%, transparent 70%);
+    }
+    .hero-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; z-index: 1; position: relative; width: 100%; }
+    .hero-tag { display: inline-block; background: var(--green-light); color: var(--green-dark); padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.9rem; line-height: 1.2; color: var(--green-dark); margin-bottom: 20px; }
+    .hero h1 span { color: var(--green-mid); }
+    .hero p { font-size: 1.1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 36px; }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary { background: var(--green-mid); color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: background 0.2s, transform 0.2s; display: inline-block; }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .btn-secondary { border: 2px solid var(--green-mid); color: var(--green-mid); padding: 12px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.2s; display: inline-block; }
+    .btn-secondary:hover { background: var(--green-mid); color: white; }
+    .hero-image { display: flex; justify-content: center; align-items: center; }
+    .hero-photo-wrap {
+      width: 380px; height: 460px;
+      border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+      overflow: hidden; box-shadow: 0 20px 60px rgba(88,129,87,0.35);
+      animation: morph 8s ease-in-out infinite; border: 5px solid var(--green-light);
+    }
+    .hero-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    @keyframes morph {
+      0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+      50% { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; }
+    }
+
+    section { padding: 90px 40px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag { display: inline-block; background: var(--beige); color: var(--brown); padding: 5px 16px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--green-dark); margin-bottom: 16px; }
+    .section-subtitle { color: var(--text-mid); font-size: 1.05rem; line-height: 1.8; max-width: 600px; }
+
+    .about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: center; margin-top: 50px; }
+    .about-img-wrap { width: 100%; max-width: 300px; border-radius: 40px 10px 40px 10px; overflow: hidden; box-shadow: 8px 8px 0 var(--green-light), 0 20px 40px rgba(0,0,0,0.12); aspect-ratio: 3/4; }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .about-text h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--green-dark); margin-bottom: 16px; }
+    .about-text p { color: var(--text-mid); line-height: 1.9; margin-bottom: 14px; font-size: 0.98rem; }
+    .about-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .badge { background: var(--beige-light); border: 1px solid var(--beige); color: var(--brown); padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; }
+
+    .services { background: var(--beige-light); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+    .service-card { background: white; border-radius: 20px; padding: 36px 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; border-top: 4px solid var(--green-light); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+    .service-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--green-dark); margin-bottom: 10px; }
+    .service-card p { color: var(--text-mid); font-size: 0.95rem; line-height: 1.7; }
+
+    /* SCHEDULING */
+    .scheduling { background: var(--white); }
+    .scheduling-tabs { display: flex; gap: 12px; justify-content: center; margin: 32px 0 0; }
+    .tab-btn {
+      padding: 10px 24px; border-radius: 50px; border: 2px solid var(--green-light);
+      background: white; color: var(--green-dark); font-family: 'Lato', sans-serif;
+      font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+    }
+    .tab-btn.active { background: var(--green-mid); color: white; border-color: var(--green-mid); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .scheduling-box { background: var(--beige-light); border-radius: 24px; padding: 50px; border: 1px solid var(--beige); max-width: 700px; margin: 24px auto 0; box-shadow: 0 8px 32px rgba(0,0,0,0.04); }
+    .scheduling-box h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--green-dark); margin-bottom: 8px; text-align: center; }
+    .scheduling-box > p { color: var(--text-mid); text-align: center; margin-bottom: 32px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.9rem; font-weight: 700; color: var(--brown); margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border-radius: 12px; border: 1.5px solid var(--beige); background: white; font-family: 'Lato', sans-serif; font-size: 0.95rem; color: var(--text-dark); transition: border-color 0.2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--green-mid); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-submit { width: 100%; padding: 14px; background: var(--green-mid); color: white; border: none; border-radius: 50px; font-size: 1rem; font-weight: 700; font-family: 'Lato', sans-serif; cursor: pointer; margin-top: 8px; transition: background 0.2s, transform 0.2s; }
+    .form-submit:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .success-msg { display: none; background: #d4edda; color: #2d6a4f; border-radius: 12px; padding: 14px; text-align: center; font-weight: 700; margin-top: 16px; }
+    .calendar-wrap { max-width: 700px; margin: 24px auto 0; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .calendar-wrap iframe { width: 100%; height: 500px; border: none; }
+    .calendar-info { background: var(--beige-light); border-radius: 24px; padding: 32px; max-width: 700px; margin: 24px auto 0; text-align: center; border: 1px solid var(--beige); }
+    .calendar-info p { color: var(--text-mid); line-height: 1.8; margin-bottom: 20px; }
+    .calendar-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--green-mid); color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: background 0.2s, transform 0.2s; }
+    .calendar-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+    /* INSTAGRAM */
+    .instagram-section { background: var(--beige-light); }
+    .instagram-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .instagram-placeholder {
+      aspect-ratio: 1; border-radius: 16px;
+      background: linear-gradient(135deg, var(--green-light), var(--green-mid));
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: white; font-size: 2rem; gap: 8px; cursor: pointer;
+      transition: transform 0.2s; text-decoration: none;
+    }
+    .instagram-placeholder:hover { transform: scale(1.03); }
+    .instagram-placeholder span { font-size: 0.8rem; font-weight: 700; font-family: 'Lato', sans-serif; }
+    .insta-follow-btn {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 32px;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none;
+      font-weight: 700; font-size: 1rem; transition: transform 0.2s;
+      box-shadow: 0 4px 20px rgba(220,39,67,0.3);
+    }
+    .insta-follow-btn:hover { transform: translateY(-3px); }
+
+    .contact { background: var(--green-dark); color: white; }
+    .contact .section-title { color: white; }
+    .contact .section-subtitle { color: var(--beige); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 50px; align-items: center; }
+    .contact-info { display: flex; flex-direction: column; gap: 24px; }
+    .contact-item { display: flex; align-items: center; gap: 16px; }
+    .contact-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .contact-item p { color: var(--beige); font-size: 0.9rem; }
+    .contact-item strong { color: white; display: block; }
+    .whatsapp-btn { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    .whatsapp-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+    .instagram-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: transform 0.2s; box-shadow: 0 4px 20px rgba(220,39,67,0.35); }
+    .instagram-btn:hover { transform: translateY(-3px); }
+    .contact-right { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+    .contact-right p { color: var(--beige); line-height: 1.8; }
+
+    footer { background: var(--text-dark); color: #aaa; text-align: center; padding: 28px 40px; font-size: 0.88rem; }
+    footer span { color: var(--green-light); }
+
+    @media (max-width: 900px) {
+      .hero-content, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero-image { display: none; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .scheduling-box { padding: 30px 20px; }
+      .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.2rem; }
+      section { padding: 60px 20px; }
+      .scheduling-tabs { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Franciele <span>Silva</span></div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#agendamento">Agendamento</a></li>
+    <li><a href="#instagram">Instagram</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('agendamento').scrollIntoView({behavior:'smooth'})">Agendar Consulta</button>
+</nav>
+
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">🌿 Psicologia Clínica & RH</div>
+      <h1>Cuidar da sua <span>mente</span> é o maior presente</h1>
+      <p>Atendimento psicológico humanizado, com base na Terapia Cognitivo-Comportamental. Um espaço seguro para você se conhecer, crescer e viver com mais equilíbrio.</p>
+      <div class="hero-btns">
+        <a href="#agendamento" class="btn-primary">Agendar Consulta</a>
+        <a href="#sobre" class="btn-secondary">Conheça a Franciele</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-photo-wrap">
+        <img src="franciele.png" alt="Franciele Silva - Psicóloga" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img src="franciele.png" alt="Franciele Silva - Psicóloga" />
+      </div>
+      <div class="about-text">
+        <div class="section-tag">Sobre mim</div>
+        <h3>Franciele Silva<br>Psicóloga</h3>
+        <p>Olá! Seja bem-vindo(a) ao meu perfil.</p>
+        <p>Sou Psicóloga, com sólida experiência na área de Recursos Humanos, especialmente em Recrutamento e Seleção, e vivência no setor administrativo. Minha formação em Psicologia, aliada aos estudos contínuos em Terapia Cognitivo-Comportamental, amplia meu olhar analítico, minha capacidade de tomada de decisão, comunicação assertiva e gestão de pessoas.</p>
+        <p>Tenho um perfil organizado, responsável e orientado a processos. Ao longo da minha trajetória, desenvolvi habilidades em organização, atendimento ao cliente, comunicação verbal e escrita, com foco em eficiência e qualidade.</p>
+        <p>Acredito que carreira se constrói com conhecimento, por isso mantenho uma postura constante de atualização. Essa base teórica e prática me permite atuar de forma estratégica, ética e humanizada.</p>
+        <div class="about-badges">
+          <span class="badge">CRP 06/235118</span>
+          <span class="badge">TCC</span>
+          <span class="badge">Recursos Humanos</span>
+          <span class="badge">Recrutamento & Seleção</span>
+          <span class="badge">Gestão de Pessoas</span>
+          <span class="badge">Autoconhecimento</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicos">
+  <div class="section-inner">
+    <div class="section-tag">O que ofereço</div>
+    <h2 class="section-title">Serviços & Especialidades</h2>
+    <p class="section-subtitle">Atendimento personalizado para diferentes necessidades, com técnicas atuais e eficazes.</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">🧠</div><h3>Psicoterapia Individual</h3><p>Sessões individuais focadas no autoconhecimento, bem-estar emocional e superação de desafios pessoais com base na TCC.</p></div>
+      <div class="service-card"><div class="service-icon">😰</div><h3>Ansiedade & Estresse</h3><p>Técnicas baseadas em TCC para identificar e transformar padrões de pensamento que geram ansiedade e estresse.</p></div>
+      <div class="service-card"><div class="service-icon">👥</div><h3>Recrutamento & Seleção</h3><p>Processos seletivos humanizados, com análise comportamental e avaliação de perfil profissional.</p></div>
+      <div class="service-card"><div class="service-icon">💼</div><h3>Psicologia Organizacional</h3><p>Apoio em gestão de pessoas, desenvolvimento de equipes e comunicação assertiva.</p></div>
+      <div class="service-card"><div class="service-icon">🌐</div><h3>Atendimento Online</h3><p>Sessões por videochamada com a mesma qualidade e privacidade do atendimento presencial, para todo o Brasil.</p></div>
+      <div class="service-card"><div class="service-icon">🌱</div><h3>Desenvolvimento Pessoal</h3><p>Para quem busca autoconhecimento, propósito e crescimento integral na vida pessoal e profissional.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDAMENTO COM ABAS -->
+<section class="scheduling" id="agendamento">
+  <div class="section-inner">
+    <div style="text-align:center;">
+      <div class="section-tag">Marque sua sessão</div>
+      <h2 class="section-title">Agendar Consulta</h2>
+      <p class="section-subtitle" style="margin: 0 auto;">Escolha como prefere agendar sua consulta.</p>
+    </div>
+
+    <div class="scheduling-tabs">
+      <button class="tab-btn active" onclick="switchTab('form')">📋 Formulário</button>
+      <button class="tab-btn" onclick="switchTab('calendar')">📅 Google Agenda</button>
+      <button class="tab-btn" onclick="switchTab('whatsapp')">💬 WhatsApp Direto</button>
+    </div>
+
+    <!-- ABA: FORMULÁRIO -->
+    <div id="tab-form" class="tab-content active">
+      <div class="scheduling-box">
+        <h3>📋 Solicitar Agendamento</h3>
+        <p>Preencha e receberei sua solicitação por e-mail. Confirmo em até 24h úteis! ✅</p>
+        <!-- FORMSPREE: troque SEU_ID pelo código do Formspree -->
+        <form id="scheduleForm" action="https://formspree.io/f/SEU_ID_FORMSPREE" method="POST" onsubmit="handleFormSubmit(event)">
+          <input type="hidden" name="_subject" value="🗓️ Novo agendamento - Site Franciele Silva" />
+          <input type="hidden" name="_next" value="" />
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome completo *</label>
+              <input type="text" name="nome" placeholder="Seu nome" required />
+            </div>
+            <div class="form-group">
+              <label>WhatsApp *</label>
+              <input type="tel" name="whatsapp" id="clienteWhatsapp" placeholder="(19) 99999-9999" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" name="email" placeholder="seu@email.com" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Modalidade *</label>
+              <select name="modalidade" id="clienteModalidade" required>
+                <option value="">Selecione...</option>
+                <option>Presencial</option>
+                <option>Online (Videochamada)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Preferência de horário</label>
+              <select name="horario" id="clienteHorario">
+                <option value="">Selecione...</option>
+                <option>Manhã (8h–12h)</option>
+                <option>Tarde (13h–17h)</option>
+                <option>Noite (18h–20h)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Motivo do contato (opcional)</label>
+            <textarea name="motivo" id="clienteMotivo" rows="3" placeholder="Conte um pouco sobre o que te trouxe até aqui..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">✉️ Enviar Solicitação</button>
+          <div class="success-msg" id="successMsg">✅ Solicitação enviada! Entrarei em contato em breve. Aguarde a confirmação no WhatsApp 💚</div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ABA: GOOGLE AGENDA -->
+    <div id="tab-calendar" class="tab-content">
+      <div class="calendar-info">
+        <p style="font-size:1.1rem; color:var(--green-dark); font-weight:700; margin-bottom:12px;">📅 Agende direto pelo Google Agenda</p>
+        <p>Clique no botão abaixo para ver minha disponibilidade e escolher o melhor horário para você. Após o agendamento, você receberá uma confirmação automática por e-mail.</p>
+        <!-- Substitua o link pelo link real do seu Google Agenda / Calendly -->
+        <a href="https://calendar.google.com/calendar/appointments/schedules/LINK_AGENDAMENTO" target="_blank" class="calendar-btn">
+          📅 Ver horários disponíveis
+        </a>
+        <p style="margin-top: 20px; font-size: 0.85rem;">Após configurar o Google Agenda, cole seu link de agendamento aqui.</p>
+      </div>
+    </div>
+
+    <!-- ABA: WHATSAPP DIRETO -->
+    <div id="tab-whatsapp" class="tab-content">
+      <div class="scheduling-box" style="text-align:center;">
+        <h3>💬 Agendar pelo WhatsApp</h3>
+        <p>Prefere falar diretamente? Clique abaixo e já te envio os horários disponíveis!</p>
+        <a href="https://wa.me/5519997505260?text=Olá%20Franciele!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="whatsapp-btn" style="margin: 0 auto; justify-content: center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Chamar no WhatsApp agora
+        </a>
+        <p style="margin-top: 20px; color: var(--text-mid); font-size: 0.9rem;">📞 (19) 99750-5260 · Seg a Sex 8h–20h · Sáb 8h–13h</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="instagram-section" id="instagram">
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-tag">Redes sociais</div>
+    <h2 class="section-title">Siga no Instagram</h2>
+    <p class="section-subtitle" style="margin: 0 auto;">Conteúdos sobre saúde mental, autoconhecimento e bem-estar. Acompanhe!</p>
+    <div class="instagram-grid">
+      <a href="https://instagram.com/francielesilva_oficial" target="_blank" class="instagram-placeholder">🧠<span>Ver no Instagram</span></a>
+      <a href="https://instagram.com/francielesilva_oficial" target="_blank" class="instagram-placeholder">🌿<span>Ver no Instagram</span></a>
+      <a href="https://instagram.com/francielesilva_oficial" target="_blank" class="instagram-placeholder">💙<span>Ver no Instagram</span></a>
+      <a href="https://instagram.com/francielesilva_oficial" target="_blank" class="instagram-placeholder">🌸<span>Ver no Instagram</span></a>
+      <a href="https://instagram.com/francielesilva_oficial" target="_blank" class="instagram-placeholder">💼<span>Ver no Instagram</span></a>
+      <a href="https://instagram.com/francielesilva_oficial" target="_blank" class="instagram-placeholder">✨<span>Ver no Instagram</span></a>
+    </div>
+    <a href="https://instagram.com/francielesilva_oficial" target="_blank" class="insta-follow-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Seguir @francielesilva_oficial
+    </a>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="section-inner">
+    <div class="section-tag" style="background:rgba(255,255,255,0.15);color:var(--beige);">Fale comigo</div>
+    <h2 class="section-title">Contato</h2>
+    <p class="section-subtitle">Prefere falar diretamente? Estou disponível pelo WhatsApp, e-mail ou Instagram.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item"><div class="contact-icon">📞</div><div><strong>WhatsApp / Telefone</strong><p>(19) 99750-5260</p></div></div>
+        <div class="contact-item"><div class="contact-icon">📧</div><div><strong>E-mail</strong><p>francielesilva.psirh@gmail.com</p></div></div>
+        <div class="contact-item"><div class="contact-icon">📱</div><div><strong>Instagram</strong><p>@francielesilva_oficial</p></div></div>
+        <div class="contact-item"><div class="contact-icon">🪪</div><div><strong>Registro Profissional</strong><p>CRP 06/235118</p></div></div>
+      </div>
+      <div class="contact-right">
+        <p>O primeiro passo para cuidar da sua saúde mental pode ser uma simples mensagem. Estou aqui para te ouvir e te acompanhar nessa jornada. 🌿</p>
+        <a href="https://wa.me/5519997505260?text=Olá%20Franciele!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." class="whatsapp-btn" target="_blank">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Chamar no WhatsApp
+        </a>
+        <a href="https://instagram.com/francielesilva_oficial" class="instagram-btn" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Franciele Silva</span> | Psicóloga | CRP 06/235118 | Todos os direitos reservados</p>
+</footer>
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const nome = form.querySelector('[name="nome"]').value;
+    const whatsapp = form.querySelector('[name="whatsapp"]').value;
+    const modalidade = form.querySelector('[name="modalidade"]').value;
+    const horario = form.querySelector('[name="horario"]').value;
+    const motivo = form.querySelector('[name="motivo"]').value;
+
+    // Envia para Formspree
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(res => {
+      if (res.ok) {
+        document.getElementById('successMsg').style.display = 'block';
+        form.reset();
+        // Abre WhatsApp automaticamente com os dados do cliente
+        const msg = encodeURIComponent(
+          `🗓️ *Novo Agendamento - Site*\n\n` +
+          `👤 *Nome:* ${nome}\n` +
+          `📱 *WhatsApp:* ${whatsapp}\n` +
+          `📍 *Modalidade:* ${modalidade}\n` +
+          `🕐 *Horário preferido:* ${horario || 'Não informado'}\n` +
+          `💬 *Motivo:* ${motivo || 'Não informado'}`
+        );
+        setTimeout(() => {
+          window.open(`https://wa.me/5519997505260?text=${msg}`, '_blank');
+        }, 1000);
+        setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 6000);
+      }
+    }).catch(() => {
+      alert('Erro ao enviar. Tente pelo WhatsApp direto!');
+    });
+  }
+</script>
+
+</body>
+</html>
